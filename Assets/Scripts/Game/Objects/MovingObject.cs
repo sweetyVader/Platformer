@@ -6,6 +6,8 @@ namespace P3D.Game
 {
     public class MovingObject : MonoBehaviour
     {
+        #region Variables
+
         [SerializeField] private List<Transform> _points;
 
         [Header("Initial Settings")]
@@ -20,6 +22,11 @@ namespace P3D.Game
         private Tween _tween;
 
         public List<Transform> Points => _points;
+
+        #endregion
+
+
+        #region Unity lifecycle
 
         private void Awake()
         {
@@ -37,6 +44,11 @@ namespace P3D.Game
             if (_needPlayOnStart)
                 Move();
         }
+
+        #endregion
+
+
+        #region Public methods
 
         public void Move()
         {
@@ -67,7 +79,14 @@ namespace P3D.Game
             _tween = sequence;
         }
 
+        #endregion
+
+
+        #region Private methods
+
         private bool IsValid() =>
             _points != null && _points.Count > 1;
+
+        #endregion
     }
 }

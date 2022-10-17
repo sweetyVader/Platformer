@@ -4,6 +4,8 @@ namespace P3D.Game
 {
     public class PlayerMovement : MonoBehaviour
     {
+        #region Variables
+
         [Header("Base Settings")]
         [SerializeField] private CharacterController _controller;
         [SerializeField] private float _speed = 3f;
@@ -20,10 +22,14 @@ namespace P3D.Game
         private Transform _cachedTransform;
         private Vector3 _fallVector;
 
-        private void Awake()
-        {
+        #endregion
+
+
+        private void Awake() =>
             _cachedTransform = transform;
-        }
+
+
+        #region Unity lifecycle
 
         private void Update()
         {
@@ -43,12 +49,12 @@ namespace P3D.Game
             float gravity = Physics.gravity.y * _gravityMultiplier;
 
             if (isGrounded && Input.GetButtonDown("Jump"))
-            {
                 _fallVector.y = Mathf.Sqrt(_jumpHeight * -2f * gravity);
-            }
 
             _fallVector.y += gravity * Time.deltaTime;
             _controller.Move(_fallVector * Time.deltaTime);
         }
+
+        #endregion
     }
 }

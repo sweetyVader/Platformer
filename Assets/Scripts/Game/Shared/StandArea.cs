@@ -5,7 +5,14 @@ namespace P3D.Game
     [RequireComponent(typeof(Collider))]
     public class StandArea : MonoBehaviour
     {
+        #region Variables
+
         private Transform _previousParent;
+
+        #endregion
+
+
+        #region Unity lifecycle
 
         private void Awake()
         {
@@ -30,5 +37,7 @@ namespace P3D.Game
             other.transform.SetParent(_previousParent);
             _previousParent = null;
         }
+
+        #endregion
     }
 }
